@@ -224,3 +224,53 @@ SELECT LENGTH('INFOSYS') AS Word_Length FROM dual;
 SELECT REPLACE('INFOSYS', 'S', 'T') AS Modified_Word FROM dual;
 
 
+--15
+
+SELECT Member_Name, Member_Address
+FROM Member
+WHERE Member_Address = 'Kolkata';
+
+
+--16
+SELECT Book_Name
+FROM Books
+WHERE Cost BETWEEN 300 AND 500;
+
+
+--17
+
+
+
+SELECT Member_Name
+FROM Member
+WHERE Membership_Type = 'Half Yearly';
+
+
+--18
+
+SELECT Member_Name
+FROM Member
+WHERE EXTRACT(YEAR FROM Acc_Open_Date) = 2011;
+
+--19
+
+SELECT m.Penalty_Amount
+FROM Member m
+JOIN Issue i ON m.Member_Id = i.Member_Id
+JOIN Books b ON i.Book_No = b.Book_No
+WHERE b.Book_Name = 'Let us C';
+
+--20
+SELECT m.Max_Books_Allowed
+FROM Member m
+JOIN Issue i ON m.Member_Id = i.Member_Id
+WHERE EXTRACT(MONTH FROM i.Issue_Date) = 1;
+
+
+--21
+
+SELECT member.Member_id
+FROM Member,issue minus 
+    SELECT issue.Member_id 
+    FROM Issue,member
+
