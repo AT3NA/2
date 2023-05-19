@@ -274,3 +274,71 @@ FROM Member,issue minus
     SELECT issue.Member_id 
     FROM Issue,member
 
+--22
+SELECT Book_Name, Category
+FROM Books
+WHERE Cost IS NULL;
+
+
+--23
+SELECT Book_Name, Author_Name, Cost
+FROM Books
+WHERE Author_Name = 'Loni' AND Cost < 600;
+
+
+--24
+SELECT i.Lib_Issue_Id, b.Book_Name, m.Member_Name, i.Issue_Date
+FROM Issue i
+JOIN Books b ON i.Book_No = b.Book_No
+JOIN Member m ON i.Member_Id = m.Member_Id
+WHERE i.Return_Date IS NULL;
+
+
+
+--25
+
+SELECT Book_Name, Author_Name, Category
+FROM Books
+WHERE Category IN ('Science', 'Database');
+
+--26
+
+
+SELECT Member_Name, Penalty_Amount
+FROM Member
+ORDER BY Penalty_Amount DESC;
+
+--27
+SELECT Book_Name, Category, Cost
+FROM Books
+ORDER BY Category ASC, Cost DESC;
+
+
+--28
+SELECT Book_Name, Author_Name, Category
+FROM Books
+WHERE Book_Name LIKE '%SQL%';
+
+
+--29
+
+SELECT Member_Name, Member_Address
+FROM Member
+WHERE Member_Name LIKE 'S%';
+
+--30
+
+SELECT Member_Name, Member_Address
+FROM Member
+WHERE ((Member_Name LIKE '%S%' OR Member_Name LIKE '%a%') AND Member_Name LIKE '%t%');
+
+
+--31
+
+SELECT INITCAP(Book_Name) AS Book_Name, UPPER(Author_Name) AS Author_Name
+FROM Books
+ORDER BY Book_Name DESC;
+
+
+
+--NOT FOR YOU BEACH. STAY AWAY IDIOT
