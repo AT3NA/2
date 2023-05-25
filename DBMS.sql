@@ -269,10 +269,10 @@ WHERE EXTRACT(MONTH FROM i.Issue_Date) = 1;
 
 --21
 
-SELECT member.Member_id
-FROM Member,issue minus 
-    SELECT issue.Member_id 
-    FROM Issue,member
+SELECT Member_Name
+FROM Member
+WHERE Member_Id NOT IN (SELECT Member_Id FROM Issue);
+
 
 --22
 SELECT Book_Name, Category
