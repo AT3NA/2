@@ -339,6 +339,103 @@ SELECT INITCAP(Book_Name) AS Book_Name, UPPER(Author_Name) AS Author_Name
 FROM Books
 ORDER BY Book_Name DESC;
 
+--3
+
+--1
+
+SELECT Category, COUNT(*) AS BookCount
+FROM Books
+GROUP BY Category;
+
+--2
+
+SELECT Book_No, COUNT(*) AS IssueCount
+FROM Issue
+GROUP BY Book_No
+ORDER BY IssueCount DESC;
+
+
+--3
+
+SELECT Member_Id, COUNT(*) AS BookCount
+FROM Issue
+GROUP BY Member_Id
+HAVING COUNT(*) > 1;
+
+
+--4
+
+SELECT Member_Id, Book_No, COUNT(*) AS IssueCount
+FROM Issue
+GROUP BY Member_Id, Book_No
+ORDER BY IssueCount DESC;
+
+
+--5
+
+SELECT *
+FROM Books
+WHERE Cost = (
+    SELECT MAX(Cost)
+    FROM Books
+    WHERE Cost < (
+        SELECT MAX(Cost)
+        FROM Books
+    )
+);
+
+
+--6
+
+-- Copy the Member table
+CREATE TABLE Member_Copy AS SELECT * FROM Member;
+
+-- Copy the Books table
+CREATE TABLE Books_Copy AS SELECT * FROM Books;
+
+-- Copy the Issue table
+CREATE TABLE Issue_Copy AS SELECT * FROM Issue;
+
+--7
+
+-- Copy the Member table
+CREATE TABLE Member_Copy AS SELECT * FROM Member;
+
+-- Copy the Books table
+CREATE TABLE Books_Copy AS SELECT * FROM Books;
+
+-- Copy the Issue table
+CREATE TABLE Issue_Copy AS SELECT * FROM Issue;
+
+
+--8
+
+-- Create the QUERY2 table
+CREATE TABLE QUERY2 (
+    BOOK_NAME VARCHAR2(30),
+    AUTHOR_NAME VARCHAR2(30),
+    COST NUMBER(7,2)
+);
+
+-- Insert data into the QUERY2 table
+INSERT INTO QUERY2 (BOOK_NAME, AUTHOR_NAME, COST)
+SELECT BOOK_NAME, AUTHOR_NAME, COST
+FROM Books
+WHERE COST > 300;
+
+
+--9
+
+-- Insert data into the QUERY2 table
+INSERT INTO QUERY2 (BOOK_NAME, AUTHOR_NAME, COST)
+SELECT BOOK_NAME, AUTHOR_NAME, COST
+FROM Books
+WHERE COST < 300;
+
+
+--10
+
+
 
 
 --NOT FOR YOU BEACH. STAY AWAY IDIOT
